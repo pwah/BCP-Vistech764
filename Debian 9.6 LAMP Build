@@ -1,0 +1,130 @@
+********This is the build process for the system once Debian is running on a VMWare server such as ESxi / VMWare player / VMware workstation -- this was done on VMWare workstation, with Debian 9.6 desktop DVD-DISC 1 only
+*** VMWare config, 2 cores, 4096MB RAM, BRIDGED Network,30Gb HDD split & rest are defaults.
+*** This will get you to the point you can start building a web site using HTML in the /var/www/html folder of the debian machine.
+*** SQL tables can be created with the assistance of the phpmyadmin tool http://localhost/phpmyadmin  or suppliement the localhost for the public IP
+*** I have not added https functionality at this point as a stable DNS name needs to be in place as part of the certificate.
+*** This guide used several web sites in order to reach functionality as googled pages for LAMP & debian produced sites that only partitally worked.
+*** This starts out with the user enabling the install of VMWare tools fater the user clicks on install VMWare tools from the host(and the process to integrate that into debian so that it runs faster)
+*** lines starting with # are commands for the debian console, the * lines are comments.
+*** user = deakin   password = sit764
+
+
+**info @  (https://www.debiantutorials.com/how-to-install-vmware-tools/)
+ 
+*1. Install kernel headers and tools required to compile and install VMware tools:
+
+# apt-get install binutils cpp gcc make psmisc linux-headers-$(uname -r)
+
+* 2. Mount the cdrom drive inside the guest server. Make sure you have mounted the VMware tools virtual cd from the host before moving on.
+
+# mount /dev/cdrom /mnt
+
+*3. Extract VMware tools to the tmp directory:
+
+# tar -C /tmp -zxvf /mnt/VMwareTools-x.x.x-x.tar.gz
+
+*The filename depends on the VMware host version.
+
+*4. We have already extracted the files to a temporary locations and the virtual disk isn’t needed anymore. Unmount the virtual cd:
+
+# umount /mnt
+
+* 5. Start the installation:
+
+# /tmp/vmware-tools-distrib/vmware-install.pl
+
+*Accept the defaults for every question.
+
+*6. Reboot your server
+
+# reboot
+
+**VMware tools is now installed and configured.
+ 
+ 
+ 
+**( https://www.howtoforge.com/tutorial/install-apache-with-php-and-mysql-lamp-on-debian-stretch/)
+ 
+ # su
+ # apt-get update
+ # apt-get upgrade
+ # reboot
+ 
+** FIX SUDO
+ # su
+ # apt-get install sudo -y
+ # usermod -aG sudo deakin
+ # visudo
+		*add the line   :   deakin ALL=(ALL) ALL
+		*then save (ctrl x)
+		
+# sudo apt-get -y install mariadb-server mariadb-client
+
+# sudo mysql_secure_installation  (password for root = sit764 )
+
+# sudo apt-get -y install apache2
+
+# sudo nano /etc/apache2/mods-enabled/dir.conf
+	**(move the index.php to the front of the DirectoryIndex).
+
+**(https://askubuntu.com/questions/767504/permissions-problems-with-var-www-html-and-my-own-home-directory-for-a-website)
+**Allow Apache access to the folders and the files.
+
+# sudo chgrp -R www-data /var/www/html
+# sudo find /var/www/html -type d -exec chmod g+rx {} +
+# sudo find /var/www/html -type f -exec chmod g+r {} +
+
+**Give your owner read/write privileges to the folders and the files, and permit folder access to traverse the directory structure.
+
+# sudo chown -R deakin /var/www/html/
+# sudo find /var/www/html -type d -exec chmod u+rwx {} +
+# sudo find /var/www/html -type f -exec chmod u+rw {} +
+
+**(Optional) Make sure every new file after this is created with www-data as the 'access' user.
+
+# sudo find /var/www/html -type d -exec chmod g+s {} +
+
+
+
+	
+# sudo systemctl restart apache2
+
+# sudo apt-get -y install php7.0 libapache2-mod-php7.0
+
+# sudo service apache2 restart
+
+# sudo nano /var/www/html/info.php
+ *add & save the following :
+	<?php
+	phpinfo();
+	?>
+*You should be able to web to http://localhost/info.php
+	
+# sudo apt-cache search php7.0
+
+# sudo apt-get -y install php7.0-mysql php7.0-curl php7.0-gd php7.0-intl php-pear php-imagick php7.0-imap php7.0-mcrypt php-memcache php7.0-pspell php7.0-recode php7.0-sqlite3 php7.0-tidy php7.0-xmlrpc php7.0-xsl
+
+# sudo service apache2 restart
+
+# sudo apt-get -y install phpmyadmin
+	*(select apache2 & use password sit764 as the application password)
+	*( ** MAKE SURE YOU SELECT APACHE2 buy pressing the space bar to produce an astrisk* next to APACHE2 )
+
+
+*(https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-debian-9)	
+
+# sudo mariadb
+*	(use deakin / sit764 for logon )
+
+	MariaDB [(none)]> CREATE USER 'deakin'@'localhost' IDENTIFIED BY 'sit764';
+	MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* TO 'deakin'@'localhost' WITH GRANT OPTION;
+	MariaDB [(none)]> exit
+		(You can create more users here that have access to tables etc using this process ).
+		
+***	Securing Your phpMyAdmin Instance if required   see -> https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-16-04
+	
+
+
+ 
+
+
