@@ -4,7 +4,7 @@ require('db.php');
 require("auth.php");
 
 // THIS PAGE SHOULD INCLUDE EDITING OF SYSTEM CONFIGS
-// ALT PAGE IS USER MANAGAMENT
+// ALT PAGE IS USER MANAGAMENT.
 ?>
 <!DOCTYPE html>
 <html lang="en">
