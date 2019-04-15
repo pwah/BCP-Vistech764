@@ -7,7 +7,7 @@ require("auth.php");
 <html lang="en">
   <head>
     <?php include 'head.php'?>
-    <title>Append Servoces</title>
+    <title>Append Services</title>
   </head>
   <body>
     <?php include 'navbar.php' ?>

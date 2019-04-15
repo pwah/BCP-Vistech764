@@ -7,7 +7,13 @@
     <div class="collapse navbar-collapse " id="navbarCollapse">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home </a>
+        <?php
+          if(isset($_SESSION["username"])){
+            echo "<a class=\"nav-link\" href=\"securepage.php\">Home </a>";
+          }else {
+            echo "<a class=\"nav-link\" href=\"index.php\">Home </a>";
+          }
+        ?>
         </li>
     <li class="nav-item active">
           <a class="nav-link" href="services.php">Services </a>
