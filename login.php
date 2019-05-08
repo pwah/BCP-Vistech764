@@ -4,8 +4,6 @@
     <?php require 'head.php'?>
     <title>Login</title>
     <!-- Bootstrap core CSS -->
-    <link href="justincss/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="justinjs/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
   </head>
   <body>

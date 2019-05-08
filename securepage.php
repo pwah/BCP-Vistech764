@@ -38,56 +38,60 @@ require_once("auth.php");
         <br>
 
         <?php
-        if(isset($_SESSION["username"])){
-                                            echo "<div class=\"row p-3\">
-                                                    <div class=\"col-3\">		  
-                                                        <a href=\"/view.php\" class=\"custom-card\">			
-                                                        <div class=\"card card-block align-items-center\">			  	          
-                                                            <div class=\"card-body\">
-                                                                <h5 class=\"card-title\">View BCP Plans</h5>
-                                                            </div>
-                                                            <div id=\"colorstrip-green\"> </div>
-                                                            <div style=\"height: 300px\" class=\"row w-100 bg-dark justify-content-center align-items-center\">
-                                                                <img src=\"images/tracker.png\" width=\"101\" height=\"98\" alt=\"\"/> 
-                                                            </div>
-                                                        </div>
-                                                        </a>
-                                                    </div>";
-                                            //Keep out people who only have view access
-                                            if($_SESSION['priv_level'] >= 10 )  {
-
-                                                                                    echo "<div class=\"col-6\">
-                                                                                            <a href=\"/bs1_sysdepass.php\" class=\"custom-card\">
-                                                                                            <div class=\"card card-block align-items-center\">			  	          
-                                                                                                <div class=\"card-body\">
-                                                                                                    <h5 class=\"card-title\">Start New BCP Plan</h5>
-                                                                                                </div>
-                                                                                                <div id=\"colorstrip-orange\"> </div>
-                                                                                                <div style=\"height: 300px\" class=\"row w-100 bg-dark justify-content-center align-items-center\">
-                                                                                                    <img src=\"images/start.png\" width=\"101\" height=\"98\" alt=\"\"/> 
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class=\"col-3\">
-                                                                                            <a href=\"/append.php\" class=\"custom-card\">
-                                                                                                <div class=\"card card-block align-items-center\">			  	          
-                                                                                                <div class=\"card-body\">
-                                                                                                    <h5 class=\"card-title\">Reference BCPs</h5>
-                                                                                                </div>
-                                                                                                <div id=\"colorstrip-blue\"> </div>
-                                                                                                <div style=\"height: 300px\" class=\"row w-100 bg-dark justify-content-center align-items-center\">
-                                                                                                <img src=\"images/search.png\" width=\"101\" height=\"98\" alt=\"\"/> 
-                                                                                                </div>
-                                                                                                </div>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>";
-                                                                                    
-                                                                                }
-                                                echo "</ul>";
-                                        }
+        if(isset($_SESSION["username"]))
+            {
+                echo "<div class=\"row p-3\">
+                        <div class=\"col-3\">		  
+                            <a href=\"/view.php\" class=\"custom-card\">			
+                            <div class=\"card card-block align-items-center\">			  	          
+                                <div class=\"card-body\">
+                                    <h5 class=\"card-title\">View BCP Plans</h5>
+                                </div>
+                                <div id=\"colorstrip-green\">
+                                </div>
+                                
+                                <div style=\"height: 300px\" class=\"row w-100 bg-dark justify-content-center align-items-center\">
+                                    <img src=\"images/tracker.png\" width=\"101\" height=\"98\" alt=\"\"/> 
+                                </div>
+                            </div>
+                            </a>
+                        </div>";
+                //Keep out people who only have view access
+            if($_SESSION['priv_level'] >= 10 )   
+                {
+                    echo "<div class=\"col-6\">
+                            <a href=\"/newedit.php\" class=\"custom-card\">
+                            <div class=\"card card-block align-items-center\">			  	          
+                                <div class=\"card-body\">
+                                    <h5 class=\"card-title\">Start New BCP Plan</h5>
+                                </div>
+                                <div id=\"colorstrip-orange\">
+                                </div>
+                                <div style=\"height: 300px\" class=\"row w-100 bg-dark justify-content-center align-items-center\">
+                                    <img src=\"images/start.png\" width=\"101\" height=\"98\" alt=\"\"/> 
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        <div class=\"col-3\">
+                            <a href=\"/append.php\" class=\"custom-card\">
+                                <div class=\"card card-block align-items-center\">			  	          
+                                    <div class=\"card-body\">
+                                        <h5 class=\"card-title\">Reference Tables</h5>
+                                    </div>
+                                    <div id=\"colorstrip-blue\">
+                                    </div>
+                                    <div style=\"height: 300px\" class=\"row w-100 bg-dark justify-content-center align-items-center\">
+                                        <img src=\"images/search.png\" width=\"101\" height=\"98\" alt=\"\"/> 
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>";                                                       
+                }
+            echo "</ul>";
+            }
         ?>
 
         </div>

@@ -3,7 +3,14 @@
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse1,#navbarCollapse2" aria-controls="navbarCollapse1" aria-expanded="false" aria-label="Toggle navigation">
  <span class="navbar-toggler-icon"></span>
     </button>
-    <span class="navbar-brand d-flex w-50 mr-auto">Vistech</span>
+    <span class="navbar-text d-flex w-50 mr-auto">
+    <?php 
+    if(isset($_SESSION["username"])){
+            echo "<a href=\"securepage.php\">Home </a>";
+          }else {
+            echo "<a href=\"index.php\">Home </a>";
+          }
+    ?></span>
 
     <div class="collapse navbar-collapse w-100" id="navbarCollapse1">
         <!-- put view/create/reference tables back here if needed -->

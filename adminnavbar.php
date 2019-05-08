@@ -1,3 +1,4 @@
+<!-- This is for the ADMINISTRATION BAR MENU -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="navbar-brand" id="admin_type"></span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
