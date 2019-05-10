@@ -397,7 +397,7 @@ function UpdatedB(updatestatement,id,update_get_statement)
           </tr>
 					
       </table>
-      <!--END TABEL FOR PROGRAMS -->
+      <!--END TABLE FOR PROGRAMS -->
     </div>
 
     <hr class="my-4">
@@ -407,7 +407,7 @@ function UpdatedB(updatestatement,id,update_get_statement)
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Clinical Unit</h1>
-         <p class="lead">Add Edit Clinical Unit & Programs.</p>
+         <p class="lead">Add / Edit Clinical Unit & Programs.</p>
       </div>
 
       <!--START TABLE FOR CLINICAL UNITS --> 

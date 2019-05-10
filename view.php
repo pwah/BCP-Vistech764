@@ -40,6 +40,7 @@ require("auth.php");
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/sl-1.2.6/datatables.min.css"/>
 	
     <!-- CSS end -->
+
   </head>
   <body>
     <?php include 'navbar.php' ?>
@@ -54,7 +55,6 @@ require("auth.php");
                           <div class="form-group col-lg-12">
                               <div class="col-lg-8">
                                   <table id="bcp" class="display" style="width:100%">
-                                      
                                   </table>
                                   
                               </div>      
@@ -120,12 +120,8 @@ require("auth.php");
 
     <!-- FULL SCREEN MENU -->
     <script src="js/fs-menu.js"></script>
-    <script> 
-      
-      //load data from database
-      //if(!isset($_SESSION["username"])){
-      //  $sql="SELECT id, program_id, clinical_unit_id, system_id, activity_id, mtpd_id, dependancy_rating_id, impact_rating_id, immediate_action, pre_requisites, work_around, creation_date, review_date, created_by FROM bcp";
-      //}
+
+    <script>
 
       var dataset = ["1","Program","Clinical","Sys","Activity","1","ImAct","Workarnd","01/01/01","01/01/01","test"];
       var data1 = [dataset];
@@ -140,19 +136,23 @@ require("auth.php");
             "ordering": true,
             "paging": true,
             "info": false,
-            data: data1,
+            "ajax": {
+              "dataType": "json",
+              "url": "viewbcp.php",
+              "dataSrc": "",
+            },
             columns: [
-            { title: "BCP ID" },
-            { title: "Program" },
-            { title: "Clinical Unit" },
-            { title: "System" },
-            { title: "Activity" },
-            { title: "Maintained Duration" },
-            { title: "Immediate Action" },
-            { title: "Workaround" },
-            { title: "Creation Date" },
-            { title: "Review Date" },
-            { title: "Created By" },
+            { title: "BCP ID", data: "id" },
+            { title: "Program", data: "program_name" },
+            { title: "Clinical Unit", data: "clinical_unit" },
+            { title: "System", data: "it_system_name" },
+            { title: "Activity", data: "activity" },
+            { title: "Maintained Duration", data: "mtpd" },
+            { title: "Immediate Action", data: "immediate_action" },
+            { title: "Workaround", data: "work_around" },
+            { title: "Creation Date", data: "creation_date" },
+            { title: "Review Date", data: "review_date" },
+            { title: "Created By", data: "created_by" },
         ]
         } );
       } );
