@@ -61,6 +61,23 @@ require("auth.php");
                           </div>
                         </div>
                     </div>
+
+                    <!-- CHANGED CODE FOR THE BUTTONS HERE-->
+                    <div class="row">
+                        <div class="grey-light-bg leave-comment-cont">
+                            <!-- TITLE -->
+                            <div class="contact-form-container row">
+        
+                                <div>
+                                    <div>
+                                            <button id="btnEditRow" class='button button-full-center medium btn-block'>Edit</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END CHANGED CODE FOR THE BUTTONS HERE-->
                 </div>
             </div>
         </div>
@@ -128,7 +145,7 @@ require("auth.php");
 
       //DataTable JS
       $(document).ready(function() {
-        $('#bcp').DataTable( {
+        var bcptable = $('#bcp').DataTable( {
           "autoWidth": true,
             "scrollX": false,
             "searching": true,
@@ -155,6 +172,26 @@ require("auth.php");
             { title: "Created By", data: "created_by" },
         ]
         } );
+        
+
+        $('#btnEditRow').on( 'click', function () {
+          
+          var dataArr = [];
+          var rows = $('tr.selected');
+          var rowData = bcptable.rows(rows).data();
+          $.each($(rowData),function(key,value){
+              dataArr.push(value["id"]);
+          });
+          console.log("BCP ID is "+ dataArr);
+          
+          if(dataArr){
+            window.location.href = "editbcp.php?bcpid="+dataArr;
+          } else {
+            alert("Please select a BCP record.");
+          }
+
+        } );
+
       } );
 
     </script>
