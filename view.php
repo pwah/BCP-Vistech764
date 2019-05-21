@@ -185,7 +185,7 @@ require("auth.php");
           console.log("BCP ID is "+ dataArr);
           
           if(dataArr){
-            window.location.href = "editbcp.php?bcpid="+dataArr;
+            window.location.href = "newedit.php?bcpid="+dataArr;
           } else {
             alert("Please select a BCP record.");
           }
